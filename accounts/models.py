@@ -7,6 +7,17 @@ from django.dispatch import receiver
 class User(AbstractUser):
     pass
 
+class Company(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, 
+        related_name='company', on_delete=models.CASCADE)
+    name = models.CharField(max_length=256, default='')
+    africastalking_api_key = models.CharField(max_length=256, null=True, blank=True)
+    africastalking_username = models.CharField(max_length=128, null=True, blank=True)
+    africastalking_sender_id = models.CharField(max_length=128, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, 
         related_name='profile', on_delete=models.CASCADE)

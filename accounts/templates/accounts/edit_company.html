@@ -1,0 +1,12 @@
+{% block title %}Edit Company | {{ user }} {{ super }}{% endblock %}
+
+{% block body %}
+    <div class="grid-100">
+        <h1>Company</h1>
+        <form method="POST" actions="">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" class="button" value="save" />
+        </form>
+    </div>
+{% endblock %}

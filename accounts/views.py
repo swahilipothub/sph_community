@@ -23,9 +23,6 @@ def sign_in(request):
                     return render(request, 'accounts/profile.html', {
                         'form': form
                     })
-                    # return HttpResponseRedirect(
-                    #     reverse('profile')  # TODO: go to profile
-                    # )
                 else:
                     messages.error(
                         request,
@@ -87,7 +84,6 @@ def edit_profile(request, pk):
             return render(request, 'accounts/profile.html', {
                 'form': form
             })
-            # return HttpResponseRedirect(reverse('accounts:profile'))
 
     return render(request, 'accounts/edit_profile.html', {
         'form': form
@@ -105,9 +101,36 @@ def change_password(request, pk):
             return render(request, 'accounts/profile.html', {
                 'form': form
             })
-            # return HttpResponseRedirect(reverse('accounts:profile'))
+            
     else:
         form = PasswordChangeForm(request.user)
     return render(request, 'accounts/change_password.html', {
+        'form': form
+    })
+
+@login_required
+def company(request, pk):
+    """Display User Company"""
+    company = request.user.company
+    return render(request, 'accounts/company.html', {
+        'company': company
+    })
+
+@login_required
+def edit_company(request, pk):
+    user = request.user
+    company, _ = models.Company.objects.get_or_create(user=user)
+    form = forms.CompanyForm(instance=company)
+
+    if request.method == 'POST':
+        form = forms.CompanyForm(instance=company, data=request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Updated the Company Successfully!")
+            return render(request, 'accounts/profile.html', {
+                'form': form
+            })
+
+    return render(request, 'accounts/edit_company.html', {
         'form': form
     })

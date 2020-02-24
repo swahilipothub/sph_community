@@ -5,6 +5,7 @@
     <div class="grid-20">
         <ul>
             <li><a href="{% url 'accounts:edit_profile' user.pk %}">Edit Profile</a></li>
+            <li><a href="{% url 'accounts:edit_company' user.pk %}">Edit Company</a></li>
             <li><a href="{% url 'accounts:change_password' user.pk %}">Change Password</a></li>
         </ul>
     </div>

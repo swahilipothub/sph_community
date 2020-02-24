@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'import_export',
     'accounts',
     'contacts',
+    'sms',
 ]
 
 MIDDLEWARE = [

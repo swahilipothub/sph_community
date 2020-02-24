@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from .models import User, Profile
+from .models import User, Profile, Company
 
 class UserForm(forms.ModelForm):
     username = forms.CharField(
@@ -100,3 +100,24 @@ class ProfileForm(forms.ModelForm):
         u.save()
         profile = super(ProfileForm, self).save(*args, **kwargs)
         return profile
+    
+class CompanyForm(forms.ModelForm):
+    name = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'form-control'}))
+    africastalking_api_key = forms.CharField(
+        widget=forms.TextInput(attrs={ 'class': 'form-control' }), 
+        max_length=256, 
+        required=False)
+    africastalking_username = forms.CharField(
+        widget=forms.TextInput(attrs={ 'class': 'form-control' }), 
+        max_length=128, 
+        required=False)
+    africastalking_sender_id = forms.CharField(
+        widget=forms.TextInput(attrs={ 'class': 'form-control' }), 
+        max_length=128, 
+        required=False)
+    
+    class Meta:
+        model = Company
+        fields = ['name', 'africastalking_api_key', 
+            'africastalking_username', 'africastalking_sender_id']
