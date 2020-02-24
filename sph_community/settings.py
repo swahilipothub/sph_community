@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'accounts',
     'contacts',
     'sms',
+    'opportunities',
 ]
 
 MIDDLEWARE = [

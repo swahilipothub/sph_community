@@ -65,8 +65,9 @@ def sign_out(request):
 def profile(request, pk):
     """Display User Profile"""
     profile = request.user.profile
+    profiles = models.Profile.objects.all()
     return render(request, 'accounts/profile.html', {
-        'profile': profile
+        'profile': profile, 'profiles': profiles
     })
 
 

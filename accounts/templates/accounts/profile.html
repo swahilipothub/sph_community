@@ -24,12 +24,21 @@
             <div class="grid-50">
                 <p><span class="underline">Last Name</span>: {{ profile.last_name }}</p>
                 <p><span class="underline">Birth Date</span>: {{ profile.birth_date }}</p>
-                <!-- <p><span class="underline">Favorite Animal</span>: {{ profile.favorite_animal }}</p> -->
-                <!-- <p><span class="underline">Hobby</span>: {{ profile.hobby }}</p> -->
             </div>
             <div class="grid-100">
                 <p><span class="underline">Bio</span>: {{ profile.bio|safe }}</p>
             </div>
         {% endif %}
+
+        {% for profile in profiles %}</br></br></br>
+            F.Name: {{ profile.user.first_name }}</br>
+            L.Name: {{ profile.user.last_name }}</br>
+            Email: {{ profile.user.email }}</br>
+            Mobile: {{ profile.mobile_number }}</br>
+            Location: {{ profile.location }}</br>
+            City: {{ profile.city }}</br>
+            County: {{ profile.county }}</br>
+            Country: {{ profile.country }}
+        {% endfor %}
     </div>
 {% endblock %}
