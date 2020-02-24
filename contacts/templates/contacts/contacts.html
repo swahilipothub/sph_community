@@ -1,0 +1,43 @@
+{% block body %}
+        <div class="content">
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped">
+                     <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Mobile Number</th>
+                                <th>Category</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% if contacts %}
+                        {% for contact in contacts %}
+                            <tr>
+                                <td> {{ contact.full_name }}</td>
+                                <td> {{ contact.mobile }}</td>
+                                <td> 
+                                    {% for cont in contact.category.all %}
+                                        {{ cont }},
+                                    {% endfor %}</td>
+                                
+                                <td style="">
+                                    <a class="btn btn-warning btn-xs btn-round" href="{% url 'contact_update' contact.id %}"><i class="fa fa-edit"></i>Edit</a>
+
+                                    <a class="btn btn-danger btn-xs btn-round" href="{% url 'contact_delete' contact.id %}"><i class="fa fa-times"></i>Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        <!--When there is no contacts created yet.-->
+                        {% else %}
+                            <tr>
+                                <td colspan="3"> No contacts created yet. </td>
+                                <td style="">
+                                      <a class="btn btn-info btn-sm" href="{% url 'contact_create' %}">Add Contact</a>
+                                </td>
+                            </tr>
+                        {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+    {% endblock %}

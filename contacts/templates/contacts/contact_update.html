@@ -1,0 +1,12 @@
+{% block title %}Create Contact | {{ user }} {{ super }}{% endblock %}
+
+{% block body %}
+    <div class="grid-100">
+        <h1>Contact Update</h1>
+        <form method="POST" actions="" >
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" class="button" value="save" />
+        </form>
+    </div>
+{% endblock %}
