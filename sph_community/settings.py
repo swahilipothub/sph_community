@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'contacts',
     'sms',
     'opportunities',
+    'changemakers',
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,12 @@
+{% block title %}Create Opportunity{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+    Hi {{ user.username }}!
+
+    {{ object.name }}
+    {{ object.skills }}
+    {{ object.language }}
+    {{ object.description }}
+    {{ object.location }}
+{% endblock %}
